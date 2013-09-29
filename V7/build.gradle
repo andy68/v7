@@ -6,7 +6,7 @@ project.ext.set('guiceVersion','3.0')
 project.ext.set('orientVersion','1.4.0')
 project.ext.set('shiroVersion','1.2.1')
 project.ext.set('tinkerVersion', '2.3.0')
-project.ext.set('vaadinVersion', '7.1.0')
+project.ext.set('vaadinVersion', '7.1.5')
 
 
 
