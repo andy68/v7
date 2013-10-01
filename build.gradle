@@ -18,6 +18,9 @@ subprojects{
 
         repositories{
                 mavenCentral()
+		maven{
+			url "http://maven.vaadin.com/vaadin-addons"
+		}
         }
 
 	dependencies{
