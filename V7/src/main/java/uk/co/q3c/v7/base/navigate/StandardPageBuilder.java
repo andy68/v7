@@ -52,14 +52,12 @@ public class StandardPageBuilder {
 	private Class<? extends Enum<?>> labelKeysClass;
 	private Set<String> missingEnums;
 	private Set<String> standardPageErrors;
-	private final CurrentLocale currentLocale;
 	private final Collator collator;
 	private final Translate translate;
 
 	@Inject
 	protected StandardPageBuilder(CurrentLocale currentLocale, Translate translate) {
 		super();
-		this.currentLocale = currentLocale;
 		this.collator = Collator.getInstance(currentLocale.getLocale());
 		this.translate = translate;
 	}

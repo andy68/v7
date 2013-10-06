@@ -16,7 +16,6 @@ import javax.persistence.Id;
 
 public class EntityBase {
 
-	@SuppressWarnings("unused")
 	@Id
 	private Object id;
 

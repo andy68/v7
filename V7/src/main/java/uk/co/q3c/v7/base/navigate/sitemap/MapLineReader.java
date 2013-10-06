@@ -36,6 +36,7 @@ public class MapLineReader {
 
 	public MapLineRecord processLine(int lineIndex, String line, Set<String> syntaxErrors,
 			Set<String> indentationErrors, int currentIndent) {
+		log.debug("processing line {} '" + line + "'", lineIndex);
 		index = 0;
 		this.line = line;
 		lineRecord = new MapLineRecord();

@@ -18,7 +18,6 @@ import org.apache.shiro.subject.Subject;
 
 import uk.co.q3c.util.ID;
 import uk.co.q3c.v7.base.guice.uiscope.UIScoped;
-import uk.co.q3c.v7.base.navigate.V7Navigator;
 import uk.co.q3c.v7.base.shiro.LoginExceptionHandler;
 import uk.co.q3c.v7.base.shiro.LoginStatusHandler;
 
@@ -41,17 +40,15 @@ public class DefaultLoginView extends GridViewBase implements LoginView, ClickLi
 	private final Label demoInfoLabel;
 	private final Label demoInfoLabel2;
 	private final Button submitButton;
-	private final V7Navigator navigator;
 	private final Label statusMsgLabel;
 	private final LoginExceptionHandler loginExceptionHandler;
 	private final Provider<Subject> subjectProvider;
 	private final LoginStatusHandler loginStatusHandler;
 
 	@Inject
-	protected DefaultLoginView(V7Navigator navigator, LoginExceptionHandler loginExceptionHandler,
-			Provider<Subject> subjectProvider, LoginStatusHandler loginStatusHandler) {
+	protected DefaultLoginView(LoginExceptionHandler loginExceptionHandler, Provider<Subject> subjectProvider,
+			LoginStatusHandler loginStatusHandler) {
 		super();
-		this.navigator = navigator;
 		this.loginExceptionHandler = loginExceptionHandler;
 		this.subjectProvider = subjectProvider;
 		this.loginStatusHandler = loginStatusHandler;

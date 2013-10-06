@@ -41,7 +41,6 @@ public class DefaultBreadcrumb extends HorizontalLayout implements I18NListener,
 	private final List<BreadcrumbStep> steps = new ArrayList<>();
 	private final V7Navigator navigator;
 	private final SitemapURIConverter converter;
-	private final CurrentLocale currentLocale;
 	private final Collator collator;
 	private final Translate translate;
 
@@ -51,7 +50,6 @@ public class DefaultBreadcrumb extends HorizontalLayout implements I18NListener,
 		this.navigator = navigator;
 		navigator.addViewChangeListener(this);
 		this.converter = converter;
-		this.currentLocale = currentLocale;
 		this.collator = Collator.getInstance(currentLocale.getLocale());
 		this.translate = translate;
 

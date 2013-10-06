@@ -26,7 +26,6 @@ import org.mockito.Mock;
 
 import uk.co.q3c.v7.base.shiro.V7SecurityManager;
 
-import com.google.inject.Injector;
 import com.mycila.testing.junit.MycilaJunitRunner;
 import com.mycila.testing.plugin.guice.GuiceContext;
 
@@ -59,7 +58,7 @@ public class GuiceServletInjectorTest {
 		when(servletContextEvent.getServletContext()).thenReturn(servletContext);
 		out.contextInitialized(servletContextEvent);
 		// when
-		Injector injector = out.getInjector();
+		out.getInjector();
 		// then
 		assertThat(SecurityUtils.getSecurityManager()).isInstanceOf(V7SecurityManager.class);
 
