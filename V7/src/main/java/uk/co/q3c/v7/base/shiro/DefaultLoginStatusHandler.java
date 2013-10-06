@@ -12,9 +12,10 @@
  */
 package uk.co.q3c.v7.base.shiro;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 import javax.inject.Inject;
 
@@ -40,7 +41,7 @@ import com.vaadin.ui.UI;
 @UIScoped
 public class DefaultLoginStatusHandler implements LoginStatusHandler {
 	private static Logger log = LoggerFactory.getLogger(DefaultLoginStatusHandler.class);
-	private final List<LoginStatusListener> listeners = new ArrayList<>();
+	private final Set<LoginStatusListener> listeners;
 	private final VaadinSessionProvider sessionProvider;
 	private final SubjectIdentifier subjectIdentifier;
 
@@ -53,6 +54,7 @@ public class DefaultLoginStatusHandler implements LoginStatusHandler {
 		this.sessionProvider = sessionProvider;
 		this.subjectIdentifier = subjectIdentifier;
 		this.subjectProvider = subjectProvider;
+		listeners = Collections.newSetFromMap(new WeakHashMap<LoginStatusListener, Boolean>());
 	}
 
 	@Override
