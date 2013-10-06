@@ -79,7 +79,7 @@ public class DefaultLoginStatusPanel extends Panel implements LoginStatusPanel, 
 		setIds();
 
 		// initialise
-		loginStatusChange(loginStatusHandler.subjectIsAuthenticated(), subjectPro.get());
+		loginStatusChange();
 
 	}
 
@@ -90,7 +90,9 @@ public class DefaultLoginStatusPanel extends Panel implements LoginStatusPanel, 
 	}
 
 	@Override
-	public void loginStatusChange(boolean authenticated, Subject subject) {
+	public void loginStatusChange() {
+		Subject subject = subjectPro.get();
+		boolean authenticated = subject.isAuthenticated();
 		String caption = (authenticated) ? translate.from(LabelKey.Log_Out) : translate.from(LabelKey.Log_In);
 		login_logout_Button.setCaption(caption.toLowerCase());
 		usernameLabel.setValue(subjectIdentifier.subjectName());
@@ -112,7 +114,8 @@ public class DefaultLoginStatusPanel extends Panel implements LoginStatusPanel, 
 
 	@Override
 	public void buttonClick(ClickEvent event) {
-		boolean loggedIn = loginStatusHandler.subjectIsAuthenticated();
+		Subject subject = subjectPro.get();
+		boolean loggedIn = subject.isAuthenticated();
 		if (loggedIn) {
 			subjectPro.get().logout();
 			navigator.navigateTo(StandardPageKey.Logout);

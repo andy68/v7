@@ -12,8 +12,21 @@
  */
 package uk.co.q3c.v7.base.shiro;
 
-import org.apache.shiro.subject.Subject;
 
+/**
+ * A listener for monitoring changes to the current Subject's login (authentication) status
+ * 
+ * @author David Sowerby 6 Oct 2013
+ * 
+ */
 public interface LoginStatusListener {
-	void loginStatusChange(boolean status, Subject subject);
+
+	/**
+	 * The login status of the current Subject has changed. The listener implementation should retrieve the Subject
+	 * using an injected Provider<Subject>
+	 * 
+	 * @param status
+	 * @param subject
+	 */
+	void loginStatusChange();
 }

@@ -80,7 +80,7 @@ public class LoginStatusPanelTest {
 		when(subject.getPrincipal()).thenReturn(null);
 
 		// when
-		panel.loginStatusChange(false, subject);
+		panel.loginStatusChange();
 		// then
 		assertThat(panel.getActionLabel()).isEqualTo("log in");
 		assertThat(panel.getUserId()).isEqualTo("Guest");
@@ -99,7 +99,7 @@ public class LoginStatusPanelTest {
 		when(subject.isAuthenticated()).thenReturn(false);
 		when(subject.getPrincipal()).thenReturn("userId");
 		// when
-		panel.loginStatusChange(false, subject);
+		panel.loginStatusChange();
 		// then
 		assertThat(panel.getActionLabel()).isEqualTo("log in");
 		assertThat(panel.getUserId()).isEqualTo("userId?");
@@ -116,9 +116,8 @@ public class LoginStatusPanelTest {
 		when(subject.isRemembered()).thenReturn(false);
 		when(subject.isAuthenticated()).thenReturn(true);
 		when(subject.getPrincipal()).thenReturn("userId");
-		when(loginStatusHandler.subjectIsAuthenticated()).thenReturn(true);
 		// when
-		panel.loginStatusChange(true, subject);
+		panel.loginStatusChange();
 		// then
 		assertThat(panel.getActionLabel()).isEqualTo("log out");
 		assertThat(panel.getUserId()).isEqualTo("userId");

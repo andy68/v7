@@ -89,7 +89,7 @@ public class DefaultUserNavigationTree extends Tree implements UserNavigationTre
 		navigator.addViewChangeListener(this);
 		setId(ID.getId(this));
 		loginStatusHandler.addListener(this);
-		loginStatusChange(loginStatusHandler.subjectIsAuthenticated(), subjectPro.get());
+		loginStatusChange();
 		loadNodes();
 
 	}
@@ -241,9 +241,15 @@ public class DefaultUserNavigationTree extends Tree implements UserNavigationTre
 		}
 	}
 
+	/**
+	 * Only the pages which the current user is authorised to access should be displayed. A change to login status can
+	 * therefore affect which pages should be loaded into the tree
+	 * 
+	 * @see uk.co.q3c.v7.base.shiro.LoginStatusListener#loginStatusChange()
+	 */
 	@Override
-	public void loginStatusChange(boolean status, Subject subject) {
-
+	public void loginStatusChange() {
+		loadNodes();
 	}
 
 }

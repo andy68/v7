@@ -47,13 +47,6 @@ public interface LoginStatusHandler {
 	void respondToStatusChange();
 
 	/**
-	 * When a UI is first created, components may need to access the status to determine what they display. Although
-	 * that could be directly accessed from {@link SubjectProvider}, the listener will already have an instance of this
-	 * implementation.
-	 */
-	boolean subjectIsAuthenticated();
-
-	/**
 	 * When a UI is first created, components may need to the Subject's name. Although that could be directly accessed
 	 * from {@link SubjectProvider}, the listener will already have an instance of this implementation. Using this
 	 * method will also ensure a standard interpretation of 'guest'

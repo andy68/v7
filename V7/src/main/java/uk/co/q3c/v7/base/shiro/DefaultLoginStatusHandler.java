@@ -19,7 +19,6 @@ import java.util.WeakHashMap;
 
 import javax.inject.Inject;
 
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,15 +44,11 @@ public class DefaultLoginStatusHandler implements LoginStatusHandler {
 	private final VaadinSessionProvider sessionProvider;
 	private final SubjectIdentifier subjectIdentifier;
 
-	private final SubjectProvider subjectProvider;
-
 	@Inject
-	protected DefaultLoginStatusHandler(VaadinSessionProvider sessionProvider, SubjectIdentifier subjectIdentifier,
-			SubjectProvider subjectProvider) {
+	protected DefaultLoginStatusHandler(VaadinSessionProvider sessionProvider, SubjectIdentifier subjectIdentifier) {
 		super();
 		this.sessionProvider = sessionProvider;
 		this.subjectIdentifier = subjectIdentifier;
-		this.subjectProvider = subjectProvider;
 		listeners = Collections.newSetFromMap(new WeakHashMap<LoginStatusListener, Boolean>());
 	}
 
@@ -68,10 +63,9 @@ public class DefaultLoginStatusHandler implements LoginStatusHandler {
 	}
 
 	private void fireListeners() {
-		Subject subject = subjectProvider.get();
 		log.debug("firing login status listeners");
 		for (LoginStatusListener listener : listeners) {
-			listener.loginStatusChange(subject.isAuthenticated(), subject);
+			listener.loginStatusChange();
 		}
 	}
 
@@ -90,13 +84,6 @@ public class DefaultLoginStatusHandler implements LoginStatusHandler {
 	@Override
 	public void respondToStatusChange() {
 		fireListeners();
-	}
-
-	@Override
-	public boolean subjectIsAuthenticated() {
-		Subject subject = subjectProvider.get();
-		boolean authenticated = subject.isAuthenticated();
-		return authenticated;
 	}
 
 	@Override
