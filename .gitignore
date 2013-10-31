@@ -8,6 +8,7 @@
 /.gradle
 settings.gradle~
 build.gradle~
+README.md~
 .gitignore~
 /build
 /.settings
